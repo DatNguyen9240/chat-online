@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import ErrorBoundary from "@/components/common/ErrorBoundary";
 import LoadingFallback from "@/components/common/LoadingFallback";
 
 // Giống như App.tsx trong Vite
@@ -21,5 +20,5 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
     return <LoadingFallback />;
   }
 
-  return <ErrorBoundary>{children}</ErrorBoundary>;
+  return <>{children}</>;
 }
