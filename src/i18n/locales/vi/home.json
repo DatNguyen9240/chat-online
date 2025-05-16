@@ -1,0 +1,10 @@
+{
+  "welcome": "Chào mừng đến với Chat Online",
+  "description": "Ứng dụng chat hiện đại",
+  "features": {
+    "title": "Tính năng",
+    "chat": "Chat trực tuyến",
+    "group": "Nhóm chat",
+    "video": "Gọi video"
+  }
+} 
