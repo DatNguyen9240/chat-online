@@ -1,36 +1,12 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { routeConfig, isValidRoute } from "@/configs/route-config";
 
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
-  // Danh sách các route hợp lệ trong ứng dụng
-  const validRoutes = [
-    "/",
-    "/login",
-    "/register",
-    "/chat",
-    "/profile",
-    "/user",
-  ];
-
-  // Danh sách các route con hợp lệ của /user
-  const validUserSubRoutes = ["/user/setting", "/user/profile"];
-
-  // Kiểm tra xem có phải là route con hợp lệ của /user không
-  const isValidUserSubRoute = validUserSubRoutes.some((route) => {
-    // Kiểm tra chính xác route hoặc route có thêm dấu / ở cuối
-    return pathname === route || pathname === `${route}/`;
-  });
-
-  // Nếu route không tồn tại và không phải là route của Next.js
-  if (
-    !validRoutes.includes(pathname) &&
-    !isValidUserSubRoute &&
-    !pathname.startsWith("/_next") &&
-    !pathname.startsWith("/api") &&
-    !pathname.startsWith("/static")
-  ) {
+  // Kiểm tra route có hợp lệ không
+  if (!isValidRoute(pathname, routeConfig)) {
     // Tạo HTML tùy chỉnh cho trang lỗi
     const html = `
       <!DOCTYPE html>
