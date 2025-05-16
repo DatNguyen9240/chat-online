@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
-  // Kiểm tra xem route có tồn tại không
   const pathname = request.nextUrl.pathname;
 
   // Danh sách các route hợp lệ trong ứng dụng
@@ -13,16 +12,21 @@ export function middleware(request: NextRequest) {
     "/chat",
     "/profile",
     "/user",
-    // Thêm các route khác của ứng dụng vào đây
   ];
 
-  // Kiểm tra xem route có phải là dynamic route không
-  const isDynamicRoute = pathname.startsWith("/user/");
+  // Danh sách các route con hợp lệ của /user
+  const validUserSubRoutes = ["/user/setting", "/user/profile"];
+
+  // Kiểm tra xem có phải là route con hợp lệ của /user không
+  const isValidUserSubRoute = validUserSubRoutes.some((route) => {
+    // Kiểm tra chính xác route hoặc route có thêm dấu / ở cuối
+    return pathname === route || pathname === `${route}/`;
+  });
 
   // Nếu route không tồn tại và không phải là route của Next.js
   if (
     !validRoutes.includes(pathname) &&
-    !isDynamicRoute &&
+    !isValidUserSubRoute &&
     !pathname.startsWith("/_next") &&
     !pathname.startsWith("/api") &&
     !pathname.startsWith("/static")
