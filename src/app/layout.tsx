@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import LanguageSwitcher from "@/components/common/language-switcher";
 import { cookies } from "next/headers";
 import { i18n } from "@/configs/i18n-config";
-import AppShell from "@/components/layouts/AppShell";
+import ConvexClientProvider from "@/providers/ConvexClientProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -26,7 +26,7 @@ export default async function RootLayout({
         <div className="fixed top-4 right-4">
           <LanguageSwitcher />
         </div>
-        <AppShell>{children}</AppShell>
+        <ConvexClientProvider>{children}</ConvexClientProvider>
       </body>
     </html>
   );
