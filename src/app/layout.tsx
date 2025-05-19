@@ -4,8 +4,10 @@ import LanguageSwitcher from "@/components/common/language-switcher";
 import { cookies } from "next/headers";
 import { i18n } from "@/configs/i18n-config";
 import ConvexClientProvider from "@/providers/ConvexClientProvider";
-const inter = Inter({ subsets: ["latin"] });
+import { ClerkProvider } from "@clerk/nextjs";
+import "@/styles/globals.css";
 
+const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Chat Online",
   description: "A modern chat application",
@@ -23,10 +25,14 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body className={inter.className}>
-        <div className="fixed top-4 right-4">
-          <LanguageSwitcher />
-        </div>
-        <ConvexClientProvider>{children}</ConvexClientProvider>
+        <ClerkProvider>
+          <ConvexClientProvider>
+            <div className="fixed top-4 right-4">
+              <LanguageSwitcher />
+            </div>
+            {children}
+          </ConvexClientProvider>
+        </ClerkProvider>
       </body>
     </html>
   );
