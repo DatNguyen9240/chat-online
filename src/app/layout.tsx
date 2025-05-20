@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import LanguageSwitcher from "@/components/common/language-switcher";
 import { cookies } from "next/headers";
 import { i18n } from "@/configs/i18n-config";
 import ConvexClientProvider from "@/providers/ConvexClientProvider";
 import { ClerkProvider } from "@clerk/nextjs";
 import "@/styles/globals.css";
+import { TooltipProvider } from "@radix-ui/react-tooltip";
 
 const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
@@ -27,10 +27,8 @@ export default async function RootLayout({
       <body className={inter.className}>
         <ClerkProvider>
           <ConvexClientProvider>
-            <div className="fixed top-4 right-4">
-              <LanguageSwitcher />
-            </div>
-            {children}
+            <div className="fixed top-4 right-4"></div>
+            <TooltipProvider>{children}</TooltipProvider>
           </ConvexClientProvider>
         </ClerkProvider>
       </body>

@@ -13,6 +13,8 @@ export function middleware(request: NextRequest) {
     "/chat",
     "/profile",
     "/user",
+    "/conservations",
+    "/friends",
   ];
 
   // Danh sách các route con hợp lệ của /user
