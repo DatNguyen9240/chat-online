@@ -27,7 +27,6 @@ export default async function RootLayout({
       <body className={inter.className}>
         <ClerkProvider>
           <ConvexClientProvider>
-            <div className="fixed top-4 right-4"></div>
             <TooltipProvider>{children}</TooltipProvider>
           </ConvexClientProvider>
         </ClerkProvider>

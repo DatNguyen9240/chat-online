@@ -13,7 +13,7 @@ export function middleware(request: NextRequest) {
     "/chat",
     "/profile",
     "/user",
-    "/conservations",
+    "/conversations",
     "/friends",
   ];
 
@@ -24,6 +24,9 @@ export function middleware(request: NextRequest) {
   const isValidUserSubRoute = validUserSubRoutes.some((route) => {
     return pathname === route || pathname === `${route}/`;
   });
+
+  // Kiểm tra xem có phải là dynamic route của conversations không
+  const isConversationRoute = /^\/conversations\/[^/]+$/.test(pathname);
 
   // Cho phép truy cập các file tĩnh và API
   if (
@@ -37,7 +40,11 @@ export function middleware(request: NextRequest) {
   }
 
   // Nếu route không tồn tại
-  if (!validRoutes.includes(pathname) && !isValidUserSubRoute) {
+  if (
+    !validRoutes.includes(pathname) &&
+    !isValidUserSubRoute &&
+    !isConversationRoute
+  ) {
     return NextResponse.redirect(new URL("/", request.url));
   }
 

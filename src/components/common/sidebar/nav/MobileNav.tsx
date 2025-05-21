@@ -2,7 +2,6 @@
 
 import { useNavigation } from "@/components/hooks/useNavigation";
 import { Card } from "@/components/ui/card";
-import UserButton from "@/components/auth/auth-button";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import {
@@ -11,14 +10,16 @@ import {
   TooltipTrigger,
 } from "@radix-ui/react-tooltip";
 import { Button } from "@/components/ui/button";
-
-const DesktopNav = () => {
+import UserButton from "@/components/auth/auth-button";
+import { useConversation } from "@/components/hooks/useConversation";
+const MobileNav = () => {
   const paths = useNavigation();
-
+  const { isActive } = useConversation();
+  if (isActive) return null;
   return (
-    <Card className="hidden lg:flex lg:flex-col lg:justify-between lg:items-center lg:h-full lg:w-16 lg:px-2 lg:py-4">
-      <nav className="flex flex-col items-center gap-4">
-        <ul className="flex flex-col gap-4 items-center">
+    <Card className="fixed bottom-0 left-0 right-0 w-[calc(100vw-32px)] mx-auto flex items-center h-16 p-2 lg:hidden rounded-t-2xl">
+      <nav className="w-full">
+        <ul className="flex justify-evenly items-center">
           {paths.map((path, id) => {
             const Icon = path.icon;
             return (
@@ -39,7 +40,7 @@ const DesktopNav = () => {
                       </Button>
                     </TooltipTrigger>
                     <TooltipContent
-                      side="right"
+                      side="top"
                       align="center"
                       className="bg-white text-black"
                     >
@@ -50,13 +51,26 @@ const DesktopNav = () => {
               </li>
             );
           })}
+          <li>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <div className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-primary/10">
+                  <UserButton />
+                </div>
+              </TooltipTrigger>
+              <TooltipContent
+                side="top"
+                align="center"
+                className="bg-white text-black"
+              >
+                Tài khoản
+              </TooltipContent>
+            </Tooltip>
+          </li>
         </ul>
       </nav>
-      <div className="flex flex-col items-center gap-4">
-        <UserButton />
-      </div>
     </Card>
   );
 };
 
-export default DesktopNav;
+export default MobileNav;
