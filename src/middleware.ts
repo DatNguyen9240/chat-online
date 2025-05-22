@@ -5,29 +5,6 @@ import { routeConfig, isValidRoute } from "@/configs/route-config";
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
-  // Danh sách các route hợp lệ trong ứng dụng
-  const validRoutes = [
-    "/",
-    "/login",
-    "/register",
-    "/chat",
-    "/profile",
-    "/user",
-    "/conversations",
-    "/friends",
-  ];
-
-  // Danh sách các route con hợp lệ của /user
-  const validUserSubRoutes = ["/user/setting", "/user/profile"];
-
-  // Kiểm tra xem có phải là route con hợp lệ của /user không
-  const isValidUserSubRoute = validUserSubRoutes.some((route) => {
-    return pathname === route || pathname === `${route}/`;
-  });
-
-  // Kiểm tra xem có phải là dynamic route của conversations không
-  const isConversationRoute = /^\/conversations\/[^/]+$/.test(pathname);
-
   // Cho phép truy cập các file tĩnh và API
   if (
     pathname.startsWith("/_next") ||
@@ -39,12 +16,8 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  // Nếu route không tồn tại
-  if (
-    !validRoutes.includes(pathname) &&
-    !isValidUserSubRoute &&
-    !isConversationRoute
-  ) {
+  // Kiểm tra route có hợp lệ không
+  if (!isValidRoute(pathname, routeConfig)) {
     return NextResponse.redirect(new URL("/", request.url));
   }
 
