@@ -11,7 +11,7 @@ import {
   TooltipTrigger,
 } from "@radix-ui/react-tooltip";
 import { Button } from "@/components/ui/button";
-
+import { ThemeToggle } from "@/components/ui/theme/theme-toggle";
 const DesktopNav = () => {
   const paths = useNavigation();
 
@@ -53,6 +53,7 @@ const DesktopNav = () => {
         </ul>
       </nav>
       <div className="flex flex-col items-center gap-4">
+        <ThemeToggle />
         <UserButton />
       </div>
     </Card>

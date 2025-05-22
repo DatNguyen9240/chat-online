@@ -6,6 +6,7 @@ import ConvexClientProvider from "@/providers/ConvexClientProvider";
 import { ClerkProvider } from "@clerk/nextjs";
 import "@/styles/globals.css";
 import { TooltipProvider } from "@radix-ui/react-tooltip";
+import { ThemeProvider } from "@/components/ui/theme/theme-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
@@ -23,13 +24,21 @@ export default async function RootLayout({
   const locale = cookieStore.get("NEXT_LOCALE")?.value || i18n.defaultLocale;
 
   return (
-    <html lang={locale}>
+    <html lang={locale} suppressHydrationWarning>
       <body className={inter.className}>
-        <ClerkProvider>
-          <ConvexClientProvider>
-            <TooltipProvider>{children}</TooltipProvider>
-          </ConvexClientProvider>
-        </ClerkProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+          storageKey="chat-theme"
+        >
+          <ClerkProvider>
+            <ConvexClientProvider>
+              <TooltipProvider>{children}</TooltipProvider>
+            </ConvexClientProvider>
+          </ClerkProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
