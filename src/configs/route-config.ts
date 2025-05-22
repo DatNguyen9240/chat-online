@@ -31,6 +31,18 @@ export const routeConfig: RouteConfig[] = [
       },
     ],
   },
+  {
+    path: "/conversations",
+    children: [
+      {
+        path: "/conversations/[id]",
+        isDynamic: true,
+      },
+    ],
+  },
+  {
+    path: "/friends",
+  },
 ];
 
 // Hàm kiểm tra route có hợp lệ không

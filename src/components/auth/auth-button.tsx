@@ -1,30 +1,76 @@
 "use client";
 
-import { SignInButton, SignUpButton, UserButton, useUser } from "@clerk/nextjs";
+import { UserButton as ClerkUserButton, useUser } from "@clerk/nextjs";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
+import { LogIn, UserPlus } from "lucide-react";
+import { SignInButton, SignUpButton } from "@clerk/nextjs";
+import { useMediaQuery } from "@/components/hooks/useMediaQuery";
 
-export default function AuthButton() {
+const UserButton = () => {
   const { isSignedIn } = useUser();
+  const isMobile = useMediaQuery("(max-width: 1024px)");
 
-  if (!isSignedIn) {
+  if (isSignedIn) {
     return (
-      <div className="flex gap-4">
-        <SignInButton mode="modal">
-          <button className="px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/90">
-            Sign In
-          </button>
-        </SignInButton>
-        <SignUpButton mode="modal">
-          <button className="px-4 py-2 bg-secondary text-white rounded-md hover:bg-secondary/90">
-            Sign Up
-          </button>
-        </SignUpButton>
-      </div>
+      <ClerkUserButton
+        afterSignOutUrl="/"
+        appearance={{
+          elements: {
+            avatarBox: "w-8 h-8",
+            userButtonPopoverCard: "rounded-lg shadow-lg",
+            userButtonPopoverActionButton: "hover:bg-primary/10",
+            userButtonPopoverActionButtonText: "text-sm",
+            userButtonPopoverFooter: "hidden",
+            userButtonPopover: isMobile
+              ? "translate-y-[-40%]"
+              : "translate-y-[-20%]",
+          },
+        }}
+      />
     );
   }
 
   return (
-    <div className="flex justify-end mb-8">
-      <UserButton afterSignOutUrl="/sign-in" />
-    </div>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button
+          variant="ghost"
+          size="icon"
+          className="rounded-full w-8 h-8 hover:bg-primary/10"
+        >
+          <UserPlus className="w-4 h-4" />
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent
+        align="center"
+        className={`w-48 bg-secondary ${isMobile ? "translate-y-[-40%]" : "translate-y-[-20%]"}`}
+        sideOffset={isMobile ? 8 : 4}
+      >
+        <DropdownMenuItem className="cursor-pointer">
+          <SignInButton mode="modal">
+            <div className="flex items-center gap-2 w-full">
+              <LogIn className="w-4 h-4" />
+              <span>Đăng nhập</span>
+            </div>
+          </SignInButton>
+        </DropdownMenuItem>
+        <DropdownMenuItem className="cursor-pointer">
+          <SignUpButton mode="modal">
+            <div className="flex items-center gap-2 w-full">
+              <UserPlus className="w-4 h-4" />
+              <span>Đăng ký</span>
+            </div>
+          </SignUpButton>
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
-}
+};
+
+export default UserButton;
