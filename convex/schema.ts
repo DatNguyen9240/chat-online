@@ -11,6 +11,12 @@ export default defineSchema({
   })
     .index("by_clerk_id", ["clerkId"])
     .index("by_email", ["email"]),
+  requests: defineTable({
+    sender: v.id("users"),
+    receiver: v.id("users"),
+  })
+    .index("by_receiver", ["receiver"])
+    .index("by_receiver_sender", ["receiver", "sender"]),
 });
 
 export const create = internalMutation({
