@@ -12,6 +12,8 @@ import {
 import { Button } from "@/components/ui/button";
 import UserButton from "@/components/auth/auth-button";
 import { useConversation } from "@/components/hooks/useConversation";
+import { ThemeToggle } from "@/components/ui/theme/theme-toggle";
+
 const MobileNav = () => {
   const paths = useNavigation();
   const { isActive } = useConversation();
@@ -51,6 +53,22 @@ const MobileNav = () => {
               </li>
             );
           })}
+          <li>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <div className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-primary/10">
+                  <ThemeToggle />
+                </div>
+              </TooltipTrigger>
+              <TooltipContent
+                side="top"
+                align="center"
+                className="bg-white text-black"
+              >
+                Giao diện
+              </TooltipContent>
+            </Tooltip>
+          </li>
           <li>
             <Tooltip>
               <TooltipTrigger asChild>
