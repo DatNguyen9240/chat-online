@@ -1,9 +1,12 @@
 import { usePathname } from "next/navigation";
 import { useMemo } from "react";
 import { MessageSquare, Users } from "lucide-react";
+import { api } from "@/convex/_generated/api";
+import { useQuery } from "convex/react";
 
 export const useNavigation = () => {
   const pathname = usePathname();
+  const count = useQuery(api.requests.count);
   const paths = useMemo(
     () => [
       {
@@ -19,9 +22,10 @@ export const useNavigation = () => {
         href: "/friends",
         active: pathname === "/friends" || pathname.startsWith("/friends"),
         icon: Users,
+        count: count,
       },
     ],
-    [pathname]
+    [pathname, count]
   );
   return paths;
 };
