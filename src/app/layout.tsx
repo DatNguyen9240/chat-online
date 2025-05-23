@@ -7,6 +7,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import "@/styles/globals.css";
 import { TooltipProvider } from "@radix-ui/react-tooltip";
 import { ThemeProvider } from "@/components/ui/theme/theme-provider";
+import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
@@ -22,9 +23,8 @@ export default async function RootLayout({
   // Lấy ngôn ngữ từ cookie
   const cookieStore = await cookies();
   const locale = cookieStore.get("NEXT_LOCALE")?.value || i18n.defaultLocale;
-
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang={locale}>
       <body className={inter.className}>
         <ThemeProvider
           attribute="class"
@@ -36,6 +36,7 @@ export default async function RootLayout({
           <ClerkProvider>
             <ConvexClientProvider>
               <TooltipProvider>{children}</TooltipProvider>
+              <Toaster richColors />
             </ConvexClientProvider>
           </ClerkProvider>
         </ThemeProvider>

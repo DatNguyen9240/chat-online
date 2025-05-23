@@ -12,6 +12,8 @@ import {
 } from "@radix-ui/react-tooltip";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ui/theme/theme-toggle";
+import { Badge } from "@/components/ui/badge";
+
 const DesktopNav = () => {
   const paths = useNavigation();
 
@@ -38,6 +40,14 @@ const DesktopNav = () => {
                         <Icon className="w-5 h-5" />
                       </Button>
                     </TooltipTrigger>
+                    {typeof path.count === "number" && path.count > 0 && (
+                      <Badge
+                        variant="destructive"
+                        className="absolute -top-4 -right-4 h-5 w-5 flex items-center justify-center p-0 z-50"
+                      >
+                        {path.count}
+                      </Badge>
+                    )}
                     <TooltipContent
                       side="right"
                       align="center"
