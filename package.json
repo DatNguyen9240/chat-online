@@ -33,6 +33,7 @@
     "react-hook-form": "^7.56.4",
     "react-i18next": "latest",
     "react-redux": "latest",
+    "react-textarea-autosize": "^8.5.9",
     "sonner": "^2.0.3",
     "svix": "^1.65.0",
     "tailwind-merge": "^3.3.0",
