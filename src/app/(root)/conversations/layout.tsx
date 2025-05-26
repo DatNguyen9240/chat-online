@@ -29,6 +29,8 @@ const ConservationsLayout = ({ children }: Props) => {
                   username={conversations.otherMember?.username || ""}
                   imageUrl={conversations.otherMember?.imageUrl || ""}
                   email={conversations.otherMember?.email || ""}
+                  lastMessageSender={conversations.lastMessage?.sender}
+                  lastMessageContent={conversations.lastMessage?.content}
                 />
               );
             })
