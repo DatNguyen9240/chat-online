@@ -8,9 +8,18 @@ interface Props {
   imageUrl: string;
   username: string;
   email: string;
+  lastMessageSender?: string;
+  lastMessageContent?: string;
 }
 
-const DMCconversationItem = ({ id, imageUrl, username, email }: Props) => {
+const DMCconversationItem = ({
+  id,
+  imageUrl,
+  username,
+  email,
+  lastMessageSender,
+  lastMessageContent,
+}: Props) => {
   return (
     <Link href={`/conversations/${id}`} className="w-full">
       <div className="w-full">
@@ -21,9 +30,21 @@ const DMCconversationItem = ({ id, imageUrl, username, email }: Props) => {
               <AvatarFallback />
               <User />
             </Avatar>
-            <div className="flex flex-col truncate flex-1">
+            <div className="flex flex-col truncate">
               <h4 className="truncate">{username}</h4>
-              <p className="text-xs text-muted-foreground truncate">{email}</p>
+              {lastMessageSender && lastMessageContent ? (
+                <span className="text-sm text-muted-foreground flex truncate overflow-ellipsis">
+                  <p className="font-semibold">
+                    {lastMessageSender}
+                    {": "}&nbsp;
+                  </p>
+                  <p className="ml-1">{lastMessageContent}</p>
+                </span>
+              ) : (
+                <p className="text-xs text-muted-foreground truncate">
+                  Start the conversation!
+                </p>
+              )}
             </div>
           </div>
         </Card>
