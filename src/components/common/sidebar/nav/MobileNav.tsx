@@ -43,7 +43,7 @@ const MobileNav = () => {
                         {typeof path.count === "number" && path.count > 0 && (
                           <Badge
                             variant="destructive"
-                            className="absolute -top-4 -right-4 h-5 w-5 flex items-center justify-center p-0 z-50"
+                            className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 z-50"
                           >
                             {path.count}
                           </Badge>
