@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import React from "react";
 import Image from "next/image";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
 
 type Props = {
   fromCurrentUser: boolean;
@@ -53,7 +53,7 @@ const Message = ({
           })}
         >
           {type === "text" ? (
-            <p className="text-wrap break-words whitespace-pre-wrap">
+            <p className="text-wrap break-words whitespace-pre-wrap break-all">
               {content}
             </p>
           ) : (

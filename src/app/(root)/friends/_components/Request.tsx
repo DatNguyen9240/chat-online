@@ -1,8 +1,8 @@
 import { Id } from "@/convex/_generated/dataModel";
 import React from "react";
-import { Card } from "@/components/ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/Bard";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
+import { Button } from "@/components/ui/Button";
 import { Check, X } from "lucide-react";
 import { api } from "@/convex/_generated/api";
 import useMutationState from "@/components/hooks/useMutationState";

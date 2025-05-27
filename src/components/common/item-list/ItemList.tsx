@@ -1,6 +1,6 @@
 "use client";
 
-import { Card } from "@/components/ui/card";
+import { Card } from "@/components/ui/Bard";
 import React from "react";
 import { cn } from "@/lib/utils";
 import { useConversation } from "@/components/hooks/useConversation";

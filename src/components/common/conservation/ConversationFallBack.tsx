@@ -1,4 +1,4 @@
-import { Card } from "@/components/ui/card";
+import { Card } from "@/components/ui/Bard";
 import React from "react";
 
 const ConversationFallback = () => {

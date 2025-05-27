@@ -42,7 +42,7 @@ export const remove = mutation({
       throw new Error("You are not friends with this user");
     }
 
-    const message = await ctx.db
+    const messages = await ctx.db
       .query("messages")
       .withIndex("by_conversation_id", (q) =>
         q.eq("conversationId", args.conversationId)
@@ -55,6 +55,11 @@ export const remove = mutation({
     await Promise.all(
       memberships.map(async (membership) => {
         await ctx.db.delete(membership._id);
+      })
+    );
+    await Promise.all(
+      messages.map(async (message) => {
+        await ctx.db.delete(message._id);
       })
     );
   },
