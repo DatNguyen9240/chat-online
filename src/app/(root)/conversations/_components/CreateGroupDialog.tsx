@@ -45,8 +45,9 @@ type Props = {};
 
 const CreateGroupDialogSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
-  members: z
-    .array(z.string())
+  memberIds: z
+    .string()
+    .array()
     .min(2, { message: "At least 2 members are required" }),
 });
 
@@ -59,10 +60,10 @@ const CreateGroupDialog = (props: Props) => {
     resolver: zodResolver(CreateGroupDialogSchema),
     defaultValues: {
       name: "",
-      members: [],
+      memberIds: [],
     },
   });
-  const members = form.watch("members", []);
+  const members = form.watch("memberIds", []);
   const unSelectedFriends = useMemo(() => {
     return friends
       ? friends.filter((friend) => !members.includes(friend._id))
@@ -72,7 +73,7 @@ const CreateGroupDialog = (props: Props) => {
   const handleSubmit = (data: z.infer<typeof CreateGroupDialogSchema>) => {
     createGroup({
       name: data.name,
-      members: data.members,
+      memberIds: data.memberIds,
     })
       .then(() => {
         form.reset();
@@ -124,7 +125,7 @@ const CreateGroupDialog = (props: Props) => {
             />
             <FormField
               control={form.control}
-              name="members"
+              name="memberIds"
               render={() => (
                 <FormItem>
                   <FormLabel>Members</FormLabel>
@@ -146,7 +147,7 @@ const CreateGroupDialog = (props: Props) => {
                               className="flex items-center gap-2 w-full p-2"
                               onCheckedChange={(checked) => {
                                 if (checked) {
-                                  form.setValue("members", [
+                                  form.setValue("memberIds", [
                                     ...members,
                                     friend._id,
                                   ]);
@@ -191,7 +192,7 @@ const CreateGroupDialog = (props: Props) => {
                             className="text-muted-foreground w-4 h-4 absolute -top-1 -right-1 bg-muted rounded-full cursor-pointer"
                             onClick={() => {
                               form.setValue(
-                                "members",
+                                "memberIds",
                                 members.filter((id) => id !== friend._id)
                               );
                             }}

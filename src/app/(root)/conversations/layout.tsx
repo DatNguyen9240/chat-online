@@ -6,6 +6,7 @@ import { useQuery } from "convex/react";
 import DMCconversationItem from "./_components/DMCconversationItem";
 import { Loader2 } from "lucide-react";
 import CreateGroupDialog from "./_components/CreateGroupDialog";
+import GroupConversationItem from "./_components/GroupConversationItem";
 type Props = React.PropsWithChildren<{}>;
 
 const ConservationsLayout = ({ children }: Props) => {
@@ -22,14 +23,19 @@ const ConservationsLayout = ({ children }: Props) => {
           ) : (
             conversations.map((conversations) => {
               return conversations.conversation.isGroup ? (
-                <p>Group</p>
+                <GroupConversationItem
+                  key={conversations.conversation._id}
+                  id={conversations.conversation._id}
+                  name={conversations.conversation?.name || ""}
+                  lastMessageSender={conversations.lastMessage?.sender}
+                  lastMessageContent={conversations.lastMessage?.content}
+                />
               ) : (
                 <DMCconversationItem
                   key={conversations.conversation._id}
                   id={conversations.conversation._id}
                   username={conversations.otherMember?.username || ""}
                   imageUrl={conversations.otherMember?.imageUrl || ""}
-                  email={conversations.otherMember?.email || ""}
                   lastMessageSender={conversations.lastMessage?.sender}
                   lastMessageContent={conversations.lastMessage?.content}
                 />

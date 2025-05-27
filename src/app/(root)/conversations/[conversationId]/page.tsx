@@ -8,7 +8,7 @@ import { Loader2 } from "lucide-react";
 import Header from "./_components/Header";
 import Body from "./_components/body/Body";
 import ChatInput from "./_components/input/ChatInput";
-import RemoveFriendDialog from "./_components/dialogs/RemoveFriendDialog";
+import RemoveFriendDialog from "../_components/RemoveFriendDialog";
 type Props = {
   params: {
     conversationId: Id<"conversations">;
@@ -41,12 +41,12 @@ const ConversationId = ({ params: { conversationId } }: Props) => {
       />
       <Header
         imgUrl={
-          conversation.isGroup ? undefined : conversation.otherMember.imageUrl
+          conversation.isGroup ? undefined : conversation.otherMember?.imageUrl
         }
         name={
           conversation.isGroup
             ? conversation.name
-            : conversation.otherMember.username
+            : conversation.otherMember?.username
         }
         options={
           conversation.isGroup

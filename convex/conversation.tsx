@@ -1,50 +1,12 @@
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
 import { getUserByClerkId } from "./_ultils";
-import { Id } from "./_generated/dataModel";
-
-type Conversation = {
-  _id: Id<"conversations">;
-  name?: string;
-  isGroup: boolean;
-  lastMessageId?: Id<"messages">;
-};
-
-type User = {
-  _id: Id<"users">;
-  username: string;
-  imageUrl: string;
-  email: string;
-  clerkId: string;
-};
-
-type GroupMember = {
-  username: string;
-};
-
-type ConversationResponse =
-  | {
-      _id: Id<"conversations">;
-      name?: string;
-      isGroup: true;
-      lastMessageId?: Id<"messages">;
-      otherMember: null;
-      otherMembers: GroupMember[];
-    }
-  | {
-      _id: Id<"conversations">;
-      name?: string;
-      isGroup: false;
-      lastMessageId?: Id<"messages">;
-      otherMember: User & { lastSeenMessageId?: Id<"messages"> };
-      otherMembers: null;
-    };
 
 export const get = query({
   args: {
     id: v.id("conversations"),
   },
-  handler: async (ctx, args): Promise<ConversationResponse> => {
+  handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
     if (!identity) {
       throw new Error("Unauthorized");
@@ -80,13 +42,7 @@ export const get = query({
       const otherMembership = allConversationMemberships.filter(
         (membership) => membership.memberId !== currentUser._id
       )[0];
-      if (!otherMembership) {
-        throw new Error("Other member not found");
-      }
       const otherMemberDetails = await ctx.db.get(otherMembership.memberId);
-      if (!otherMemberDetails) {
-        throw new Error("Other member details not found");
-      }
       return {
         ...conversation,
         otherMember: {
@@ -94,7 +50,7 @@ export const get = query({
           lastSeenMessageId: otherMembership.lastSeenMessageId,
         },
         otherMembers: null,
-      } as ConversationResponse;
+      };
     } else {
       const otherMembers = await Promise.all(
         allConversationMemberships
@@ -111,17 +67,17 @@ export const get = query({
       );
       return {
         ...conversation,
-        otherMembers,
         otherMember: null,
-      } as ConversationResponse;
+        otherMembers: otherMembers,
+      };
     }
   },
 });
 
 export const createGroup = mutation({
   args: {
-    members: v.array(v.id("users")),
     name: v.string(),
+    memberIds: v.array(v.id("users")),
   },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
@@ -139,18 +95,13 @@ export const createGroup = mutation({
       name: args.name,
       isGroup: true,
     });
-    await ctx.db.insert("conversationMembers", {
-      conversationId,
-      memberId: currentUser._id,
-    });
     await Promise.all(
-      [...args.members, currentUser._id].map((member) =>
-        ctx.db.insert("conversationMembers", {
+      [...args.memberIds, currentUser._id].map(async (memberId) => {
+        await ctx.db.insert("conversationMembers", {
           conversationId,
-          memberId: member,
-        })
-      )
+          memberId,
+        });
+      })
     );
-    return conversationId;
   },
 });
