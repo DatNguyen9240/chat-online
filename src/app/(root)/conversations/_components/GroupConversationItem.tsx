@@ -5,16 +5,14 @@ import { User } from "lucide-react";
 import { Id } from "@/convex/_generated/dataModel";
 interface Props {
   id: Id<"conversations">;
-  imageUrl: string;
-  username: string;
+  name: string;
   lastMessageSender?: string;
   lastMessageContent?: string;
 }
 
-const DMCconversationItem = ({
+const GroupConversationItem = ({
   id,
-  imageUrl,
-  username,
+  name,
   lastMessageSender,
   lastMessageContent,
 }: Props) => {
@@ -24,12 +22,10 @@ const DMCconversationItem = ({
         <Card className="w-full p-2 flex flex-row items-center gap-4 truncate">
           <div className="flex flex-row items-center gap-4 truncate w-full">
             <Avatar>
-              <AvatarImage src={imageUrl} />
-              <AvatarFallback />
-              <User />
+              <AvatarFallback>{name.charAt(0).toUpperCase()}</AvatarFallback>
             </Avatar>
             <div className="flex flex-col truncate">
-              <h4 className="truncate">{username}</h4>
+              <h4 className="truncate">{name}</h4>
               {lastMessageSender && lastMessageContent ? (
                 <span className="text-sm text-muted-foreground flex truncate overflow-ellipsis">
                   <p className="font-semibold">
@@ -51,4 +47,4 @@ const DMCconversationItem = ({
   );
 };
 
-export default DMCconversationItem;
+export default GroupConversationItem;
