@@ -5,6 +5,7 @@ import { api } from "@/convex/_generated/api";
 import { useQuery } from "convex/react";
 import DMCconversationItem from "./_components/DMCconversationItem";
 import { Loader2 } from "lucide-react";
+import { CreateGroupDialog } from "./[conversationId]/_components/dialogs";
 type Props = React.PropsWithChildren<{}>;
 
 const ConservationsLayout = ({ children }: Props) => {
@@ -12,7 +13,7 @@ const ConservationsLayout = ({ children }: Props) => {
 
   return (
     <>
-      <ItemList title="Cuộc hội thoại">
+      <ItemList title="Cuộc hội thoại" action={<CreateGroupDialog />}>
         {conversations ? (
           conversations.length === 0 ? (
             <p className="h-full w-full flex items-center justify-center">
