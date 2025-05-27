@@ -53,7 +53,7 @@ const MobileNav = () => {
                     <TooltipContent
                       side="top"
                       align="center"
-                      className="bg-white text-black"
+                      className="bg-white text-black border shadow-md rounded-md px-3 py-1.5 text-sm z-[100]"
                     >
                       {path.name}
                     </TooltipContent>
@@ -72,7 +72,7 @@ const MobileNav = () => {
               <TooltipContent
                 side="top"
                 align="center"
-                className="bg-white text-black"
+                className="bg-white text-black border shadow-md rounded-md px-3 py-1.5 text-sm z-[100]"
               >
                 Giao diện
               </TooltipContent>
@@ -88,7 +88,7 @@ const MobileNav = () => {
               <TooltipContent
                 side="top"
                 align="center"
-                className="bg-white text-black"
+                className="bg-white text-black border shadow-md rounded-md px-3 py-1.5 text-sm z-[100]"
               >
                 Tài khoản
               </TooltipContent>
