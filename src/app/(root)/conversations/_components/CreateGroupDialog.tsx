@@ -171,13 +171,13 @@ const CreateGroupDialog = (props: Props) => {
               )}
             />
             {members && members.length > 0 ? (
-              <Card className="flex items-center gap-3 overflow-x-auto w-full h-24 p-2 no-scrollbar">
+              <Card className="flex flex-row items-center gap-3 overflow-x-auto w-full p-2 no-scrollbar">
                 {friends
                   ?.filter((friend) => members.includes(friend._id))
                   .map((friend) => {
                     return (
                       <div
-                        className="flex flex-col items-center gap-1"
+                        className="flex flex-row items-center gap-2 min-w-fit"
                         key={friend._id}
                       >
                         <div className="relative">
@@ -188,7 +188,7 @@ const CreateGroupDialog = (props: Props) => {
                             </AvatarFallback>
                           </Avatar>
                           <X
-                            className="text-muted-foreground w-4 h-4 absolute bottom-8 left-7 bg-muted rounded-full cursor-pointer"
+                            className="text-muted-foreground w-4 h-4 absolute -top-1 -right-1 bg-muted rounded-full cursor-pointer"
                             onClick={() => {
                               form.setValue(
                                 "members",

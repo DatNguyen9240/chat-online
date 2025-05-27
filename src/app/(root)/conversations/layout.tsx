@@ -5,7 +5,7 @@ import { api } from "@/convex/_generated/api";
 import { useQuery } from "convex/react";
 import DMCconversationItem from "./_components/DMCconversationItem";
 import { Loader2 } from "lucide-react";
-import { CreateGroupDialog } from "./[conversationId]/_components/dialogs";
+import CreateGroupDialog from "./_components/CreateGroupDialog";
 type Props = React.PropsWithChildren<{}>;
 
 const ConservationsLayout = ({ children }: Props) => {
