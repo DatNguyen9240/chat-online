@@ -103,5 +103,95 @@ export const createGroup = mutation({
         });
       })
     );
+    return conversationId;
+  },
+});
+
+export const deleteGroup = mutation({
+  args: {
+    conversationId: v.id("conversations"),
+  },
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) {
+      throw new Error("Unauthorized");
+    }
+    const currentUser = await getUserByClerkId({
+      ctx,
+      clerkId: identity.subject,
+    });
+    if (!currentUser) {
+      throw new Error("User not found");
+    }
+
+    const conversation = await ctx.db.get(args.conversationId);
+    if (!conversation) {
+      throw new Error("Conversation not found");
+    }
+    const memberships = await ctx.db
+      .query("conversationMembers")
+      .withIndex("by_conversation_id", (q) =>
+        q.eq("conversationId", args.conversationId)
+      )
+      .collect();
+    if (!memberships || memberships.length <= 1) {
+      throw new Error("This conversation does not have any members");
+    }
+
+    const messages = await ctx.db
+      .query("messages")
+      .withIndex("by_conversation_id", (q) =>
+        q.eq("conversationId", args.conversationId)
+      )
+      .collect();
+    await ctx.db.delete(args.conversationId);
+
+    await Promise.all(
+      memberships.map(async (membership) => {
+        await ctx.db.delete(membership._id);
+      })
+    );
+    await Promise.all(
+      messages.map(async (message) => {
+        await ctx.db.delete(message._id);
+      })
+    );
+  },
+});
+
+export const leaveGroup = mutation({
+  args: {
+    conversationId: v.id("conversations"),
+  },
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) {
+      throw new Error("Unauthorized");
+    }
+    const currentUser = await getUserByClerkId({
+      ctx,
+      clerkId: identity.subject,
+    });
+    if (!currentUser) {
+      throw new Error("User not found");
+    }
+
+    const conversation = await ctx.db.get(args.conversationId);
+    if (!conversation) {
+      throw new Error("Conversation not found");
+    }
+    const membership = await ctx.db
+      .query("conversationMembers")
+      .withIndex("by_member_id_conversation_id", (q) =>
+        q
+          .eq("memberId", currentUser._id)
+          .eq("conversationId", args.conversationId)
+      )
+      .unique();
+    if (!membership) {
+      throw new Error("You are not a member of this group");
+    }
+
+    await ctx.db.delete(membership._id);
   },
 });

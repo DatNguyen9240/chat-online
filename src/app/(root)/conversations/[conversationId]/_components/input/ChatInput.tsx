@@ -1,5 +1,5 @@
 import { useConversation } from "@/components/hooks/useConversation";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/Bard";
 import { api } from "@/convex/_generated/api";
 import React, { useRef } from "react";
 import { z } from "zod";
@@ -14,10 +14,10 @@ import {
   FormItem,
   FormControl,
   FormMessage,
-} from "@/components/ui/form";
+} from "@/components/ui/Form";
 import TextareaAutosize from "react-textarea-autosize";
 import { SendIcon } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 const chatMessageSchema = z.object({
   content: z.string().min(1, { message: "Message cannot be empty" }),
 });

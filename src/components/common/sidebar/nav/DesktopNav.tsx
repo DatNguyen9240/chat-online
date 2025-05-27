@@ -1,7 +1,7 @@
 "use client";
 
 import { useNavigation } from "@/components/hooks/useNavigation";
-import { Card } from "@/components/ui/card";
+import { Card } from "@/components/ui/Bard";
 import UserButton from "@/components/auth/auth-button";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
@@ -10,9 +10,9 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@radix-ui/react-tooltip";
-import { Button } from "@/components/ui/button";
-import { ThemeToggle } from "@/components/ui/theme/theme-toggle";
-import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/Button";
+import { ThemeToggle } from "@/components/ui/theme/Theme-Toggle";
+import { Badge } from "@/components/ui/Badge";
 
 const DesktopNav = () => {
   const paths = useNavigation();

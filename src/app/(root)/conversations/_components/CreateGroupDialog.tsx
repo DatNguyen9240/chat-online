@@ -14,8 +14,8 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
+} from "@/components/ui/Dialog";
+import { Input } from "@/components/ui/Input";
 import {
   Form,
   FormField,
@@ -23,13 +23,13 @@ import {
   FormLabel,
   FormControl,
   FormMessage,
-} from "@/components/ui/form";
+} from "@/components/ui/Form";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { Button } from "@/components/ui/button";
+} from "@/components/ui/Tooltip";
+import { Button } from "@/components/ui/Button";
 import { PlusIcon, X } from "lucide-react";
 import {
   DropdownMenu,
@@ -37,9 +37,9 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
   DropdownMenuCheckboxItem,
-} from "@/components/ui/dropdown-menu";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Card } from "@/components/ui/card";
+} from "@/components/ui/Dropdown-Menu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
+import { Card } from "@/components/ui/Card";
 
 type Props = {};
 

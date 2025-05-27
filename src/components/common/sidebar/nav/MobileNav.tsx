@@ -1,7 +1,7 @@
 "use client";
 
 import { useNavigation } from "@/components/hooks/useNavigation";
-import { Card } from "@/components/ui/card";
+import { Card } from "@/components/ui/Bard";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import {
@@ -9,11 +9,11 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@radix-ui/react-tooltip";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 import UserButton from "@/components/auth/auth-button";
 import { useConversation } from "@/components/hooks/useConversation";
-import { ThemeToggle } from "@/components/ui/theme/theme-toggle";
-import { Badge } from "@/components/ui/badge";
+import { ThemeToggle } from "@/components/ui/theme/Theme-Toggle";
+import { Badge } from "@/components/ui/Badge";
 
 const MobileNav = () => {
   const paths = useNavigation();
