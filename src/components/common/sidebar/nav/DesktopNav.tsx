@@ -1,7 +1,7 @@
 "use client";
 
 import { useNavigation } from "@/components/hooks/useNavigation";
-import { Card } from "@/components/ui/Bard";
+import { Card } from "@/components/ui/Card";
 import UserButton from "@/components/auth/auth-button";
 import { cn } from "@/lib/utils";
 import Link from "next/link";

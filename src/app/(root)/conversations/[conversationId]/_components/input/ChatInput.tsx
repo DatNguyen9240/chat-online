@@ -1,5 +1,5 @@
 import { useConversation } from "@/components/hooks/useConversation";
-import { Card, CardContent } from "@/components/ui/Bard";
+import { Card, CardContent } from "@/components/ui/Card";
 import { api } from "@/convex/_generated/api";
 import React, { useRef } from "react";
 import { z } from "zod";

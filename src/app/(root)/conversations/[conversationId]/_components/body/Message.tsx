@@ -10,6 +10,7 @@ type Props = {
   senderName: string;
   lastByUser: boolean;
   content: string[];
+  seen?: React.ReactNode;
   createdAt: number;
   type: string;
 };
@@ -22,6 +23,7 @@ const Message = ({
   content,
   createdAt,
   type,
+  seen,
 }: Props) => {
   const formattedDate = format(createdAt, "HH:mm - MMM d, yyyy");
   return (
@@ -75,6 +77,7 @@ const Message = ({
             {formattedDate}
           </p>
         </div>
+        {seen}
       </div>
     </div>
   );
