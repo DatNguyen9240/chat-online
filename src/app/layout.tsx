@@ -6,7 +6,7 @@ import ConvexClientProvider from "@/providers/ConvexClientProvider";
 import { ClerkProvider } from "@clerk/nextjs";
 import "@/styles/globals.css";
 import { TooltipProvider } from "@radix-ui/react-tooltip";
-import { ThemeProvider } from "@/components/ui/theme/theme-provider";
+import { ThemeProvider } from "@/components/ui/theme/Theme-Provider";
 import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });

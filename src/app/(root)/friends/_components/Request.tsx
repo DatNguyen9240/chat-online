@@ -1,6 +1,6 @@
 import { Id } from "@/convex/_generated/dataModel";
 import React from "react";
-import { Card } from "@/components/ui/Bard";
+import { Card } from "@/components/ui/Card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
 import { Button } from "@/components/ui/Button";
 import { Check, X } from "lucide-react";

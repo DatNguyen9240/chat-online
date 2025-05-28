@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Card } from "@/components/ui/Bard";
+import { Card } from "@/components/ui/Card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/Avatar";
 import { User } from "lucide-react";
 import { Id } from "@/convex/_generated/dataModel";
