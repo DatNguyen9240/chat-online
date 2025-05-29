@@ -10,7 +10,7 @@ import {
   TooltipTrigger,
 } from "@radix-ui/react-tooltip";
 import { Button } from "@/components/ui/Button";
-import UserButton from "@/components/auth/auth-button";
+import UserButton from "@/components/auth/Auth-Button";
 import { useConversation } from "@/components/hooks/useConversation";
 import { ThemeToggle } from "@/components/ui/theme/Theme-Toggle";
 import { Badge } from "@/components/ui/Badge";

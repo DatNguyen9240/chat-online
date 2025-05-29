@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { cookies } from "next/headers";
-import { i18n } from "@/configs/i18n-config";
 import ConvexClientProvider from "@/providers/ConvexClientProvider";
 import { ClerkProvider } from "@clerk/nextjs";
 import "@/styles/globals.css";
 import { TooltipProvider } from "@radix-ui/react-tooltip";
 import { ThemeProvider } from "@/components/ui/theme/Theme-Provider";
 import { Toaster } from "sonner";
+import LanguageSwitcher from "@/components/common/language-switcher";
+import { I18nProvider } from "@/providers/I18nProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
@@ -15,16 +15,13 @@ export const metadata: Metadata = {
   description: "A modern chat application",
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  // Lấy ngôn ngữ từ cookie
-  const cookieStore = await cookies();
-  const locale = cookieStore.get("NEXT_LOCALE")?.value || i18n.defaultLocale;
   return (
-    <html lang={locale}>
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <ThemeProvider
           attribute="class"
@@ -35,8 +32,11 @@ export default async function RootLayout({
         >
           <ClerkProvider>
             <ConvexClientProvider>
-              <TooltipProvider>{children}</TooltipProvider>
-              <Toaster richColors />
+              <I18nProvider>
+                <TooltipProvider>{children}</TooltipProvider>
+                <Toaster richColors />
+                <LanguageSwitcher />
+              </I18nProvider>
             </ConvexClientProvider>
           </ClerkProvider>
         </ThemeProvider>

@@ -7,14 +7,16 @@ import DMCconversationItem from "./_components/DMCconversationItem";
 import { Loader2 } from "lucide-react";
 import CreateGroupDialog from "./_components/CreateGroupDialog";
 import GroupConversationItem from "./_components/GroupConversationItem";
+import { useTranslation } from "react-i18next";
 type Props = React.PropsWithChildren<{}>;
 
 const ConservationsLayout = ({ children }: Props) => {
   const conversations = useQuery(api.conversations.get);
+  const { t } = useTranslation(["conversations"]);
 
   return (
     <>
-      <ItemList title="Cuộc hội thoại" action={<CreateGroupDialog />}>
+      <ItemList title={t("title")} action={<CreateGroupDialog />}>
         {conversations ? (
           conversations.length === 0 ? (
             <p className="h-full w-full flex items-center justify-center">
