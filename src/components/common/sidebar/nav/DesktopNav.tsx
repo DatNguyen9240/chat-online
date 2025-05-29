@@ -2,7 +2,7 @@
 
 import { useNavigation } from "@/components/hooks/useNavigation";
 import { Card } from "@/components/ui/Card";
-import UserButton from "@/components/auth/auth-button";
+import UserButton from "@/components/auth/Auth-Button";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import {
