@@ -5,7 +5,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/Dropdown-Menu";
+} from "@/components/ui/DropdownMenu";
 import { CircleArrowLeftIcon, Settings } from "lucide-react";
 import Link from "next/link";
 import React from "react";
