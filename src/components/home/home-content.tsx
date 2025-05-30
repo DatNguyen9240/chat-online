@@ -1,6 +1,6 @@
 "use client";
 
-import AuthButton from "@/components/auth/Auth-Button";
+import AuthButton from "@/components/auth/AuthButton";
 
 type HomeContentProps = {
   dict: {
