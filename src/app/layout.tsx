@@ -6,8 +6,6 @@ import "@/styles/globals.css";
 import { TooltipProvider } from "@radix-ui/react-tooltip";
 import { ThemeProvider } from "@/components/ui/theme/ThemeProvider";
 import { Toaster } from "sonner";
-import LanguageSwitcher from "@/components/common/language-switcher";
-import { I18nProvider } from "@/providers/I18nProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
@@ -32,11 +30,8 @@ export default function RootLayout({
         >
           <ClerkProvider>
             <ConvexClientProvider>
-              <I18nProvider>
-                <TooltipProvider>{children}</TooltipProvider>
-                <Toaster richColors />
-                <LanguageSwitcher />
-              </I18nProvider>
+              <TooltipProvider>{children}</TooltipProvider>
+              <Toaster richColors />
             </ConvexClientProvider>
           </ClerkProvider>
         </ThemeProvider>
