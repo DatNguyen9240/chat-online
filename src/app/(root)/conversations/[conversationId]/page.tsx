@@ -74,11 +74,6 @@ const ConversationId = ({ params }: Props) => {
                   destructive: true,
                   onClick: () => setDeleteGroupDialogOpen(true),
                 },
-                {
-                  label: "Remove Friend",
-                  destructive: true,
-                  onClick: () => setRemoveFriendDialogOpen(true),
-                },
               ]
             : [
                 {
