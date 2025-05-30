@@ -4,7 +4,7 @@ import ConvexClientProvider from "@/providers/ConvexClientProvider";
 import { ClerkProvider } from "@clerk/nextjs";
 import "@/styles/globals.css";
 import { TooltipProvider } from "@radix-ui/react-tooltip";
-import { ThemeProvider } from "@/components/ui/theme/Theme-Provider";
+import { ThemeProvider } from "@/components/ui/theme/ThemeProvider";
 import { Toaster } from "sonner";
 import LanguageSwitcher from "@/components/common/language-switcher";
 import { I18nProvider } from "@/providers/I18nProvider";
