@@ -13,6 +13,7 @@ import {
 import { Button } from "@/components/ui/Button";
 import { ThemeToggle } from "@/components/ui/theme/ThemeToggle";
 import { Badge } from "@/components/ui/Badge";
+import LanguageSwitcher from "@/components/common/language-switcher";
 
 const DesktopNav = () => {
   const paths = useNavigation();
@@ -64,6 +65,7 @@ const DesktopNav = () => {
       </nav>
       <div className="flex flex-col items-center gap-4">
         <ThemeToggle />
+        <LanguageSwitcher />
         <UserButton />
       </div>
     </Card>

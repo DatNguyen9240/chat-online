@@ -14,6 +14,7 @@ import UserButton from "@/components/auth/AuthButton";
 import { useConversation } from "@/components/hooks/useConversation";
 import { ThemeToggle } from "@/components/ui/theme/ThemeToggle";
 import { Badge } from "@/components/ui/Badge";
+import LanguageSwitcher from "@/components/common/language-switcher";
 
 const MobileNav = () => {
   const paths = useNavigation();
@@ -75,6 +76,22 @@ const MobileNav = () => {
                 className="bg-white text-black border shadow-md rounded-md px-3 py-1.5 text-sm z-[100]"
               >
                 Giao diện
+              </TooltipContent>
+            </Tooltip>
+          </li>
+          <li>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <div className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-primary/10">
+                  <LanguageSwitcher />
+                </div>
+              </TooltipTrigger>
+              <TooltipContent
+                side="top"
+                align="center"
+                className="bg-white text-black border shadow-md rounded-md px-3 py-1.5 text-sm z-[100]"
+              >
+                Ngôn ngữ
               </TooltipContent>
             </Tooltip>
           </li>

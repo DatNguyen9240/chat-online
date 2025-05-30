@@ -26,7 +26,6 @@ i18n
     lng: "en",
     defaultNS: "conversations",
     ns: ["conversations"],
-    debug: process.env.NODE_ENV === "development",
     interpolation: {
       escapeValue: false,
     },
