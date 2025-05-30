@@ -6,7 +6,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/Dropdown-Menu";
+} from "@/components/ui/DropdownMenu";
 import { Button } from "@/components/ui/Button";
 import { LogIn, UserPlus } from "lucide-react";
 import { SignInButton, SignUpButton } from "@clerk/nextjs";

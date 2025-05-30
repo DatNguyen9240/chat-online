@@ -12,7 +12,7 @@ import {
 import { Button } from "@/components/ui/Button";
 import UserButton from "@/components/auth/Auth-Button";
 import { useConversation } from "@/components/hooks/useConversation";
-import { ThemeToggle } from "@/components/ui/theme/Theme-Toggle";
+import { ThemeToggle } from "@/components/ui/theme/ThemeToggle";
 import { Badge } from "@/components/ui/Badge";
 
 const MobileNav = () => {

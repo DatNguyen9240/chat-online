@@ -12,12 +12,13 @@ import RemoveFriendDialog from "./_components/dialogs/RemoveFriendDialog";
 import DeleteGroupDialog from "./_components/dialogs/DeleteGroupDialog";
 import LeaveGroupDialog from "./_components/dialogs/LeaveGroupDialog";
 type Props = {
-  params: {
+  params: Promise<{
     conversationId: Id<"conversations">;
-  };
+  }>;
 };
 
-const ConversationId = ({ params: { conversationId } }: Props) => {
+const ConversationId = ({ params }: Props) => {
+  const { conversationId } = React.use(params);
   const conversation = useQuery(api.conversation.get, {
     id: conversationId,
   });

@@ -11,7 +11,7 @@ import {
   TooltipTrigger,
 } from "@radix-ui/react-tooltip";
 import { Button } from "@/components/ui/Button";
-import { ThemeToggle } from "@/components/ui/theme/Theme-Toggle";
+import { ThemeToggle } from "@/components/ui/theme/ThemeToggle";
 import { Badge } from "@/components/ui/Badge";
 
 const DesktopNav = () => {

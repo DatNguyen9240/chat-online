@@ -13,7 +13,7 @@ import {
   AlertDialogHeader,
   AlertDialog,
   AlertDialogCancel,
-} from "@/components/ui/Alert-Dialog";
+} from "@/components/ui/AlertDialog";
 import { AlertDialogAction } from "@radix-ui/react-alert-dialog";
 type Props = {
   conversationId: Id<"conversations">;
