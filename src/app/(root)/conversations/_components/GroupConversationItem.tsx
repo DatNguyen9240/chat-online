@@ -1,21 +1,16 @@
-import Link from "next/link";
-import { Card } from "@/components/ui/Card";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/Avatar";
-import { User } from "lucide-react";
-import { Id } from "@/convex/_generated/dataModel";
+import Link from 'next/link';
+import { Card } from '@/components/ui/Card';
+import { Avatar, AvatarFallback } from '@/components/ui/Avatar';
+import { Id } from '@/convex/_generated/dataModel';
+
 interface Props {
-  id: Id<"conversations">;
+  id: Id<'conversations'>;
   name: string;
   lastMessageSender?: string;
   lastMessageContent?: string;
 }
 
-const GroupConversationItem = ({
-  id,
-  name,
-  lastMessageSender,
-  lastMessageContent,
-}: Props) => {
+const GroupConversationItem = ({ id, name, lastMessageSender, lastMessageContent }: Props) => {
   return (
     <Link href={`/conversations/${id}`} className="w-full">
       <div className="w-full">
@@ -30,14 +25,12 @@ const GroupConversationItem = ({
                 <span className="text-sm text-muted-foreground flex truncate overflow-ellipsis">
                   <p className="font-semibold">
                     {lastMessageSender}
-                    {": "}&nbsp;
+                    {': '}&nbsp;
                   </p>
                   <p className="ml-1">{lastMessageContent}</p>
                 </span>
               ) : (
-                <p className="text-xs text-muted-foreground truncate">
-                  Start the conversation!
-                </p>
+                <p className="text-xs text-muted-foreground truncate">Start the conversation!</p>
               )}
             </div>
           </div>

@@ -1,18 +1,21 @@
-import { useMutation } from "convex/react";
-import { useState } from "react";
+import { useMutation } from 'convex/react';
+import { useState } from 'react';
+import { FunctionReference } from 'convex/server';
 
-const useMutationState = (mutatinToRun: any) => {
+type MutationFunction = FunctionReference<'mutation'>;
+
+const useMutationState = (mutationToRun: MutationFunction) => {
   const [pending, setPending] = useState(false);
-  const mutationFn = useMutation(mutatinToRun);
+  const mutationFn = useMutation(mutationToRun);
 
-  const mutation = (payload: any) => {
+  const mutation = (payload: Parameters<typeof mutationFn>[0]) => {
     setPending(true);
 
     return mutationFn(payload)
-      .then((res) => {
+      .then(res => {
         return res;
       })
-      .catch((err) => {
+      .catch(err => {
         console.error(err);
       })
       .finally(() => {

@@ -1,20 +1,20 @@
-"use client";
+'use client';
 
-import { UserButton as ClerkUserButton, useUser } from "@clerk/nextjs";
+import { UserButton as ClerkUserButton, useUser } from '@clerk/nextjs';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/DropdownMenu";
-import { Button } from "@/components/ui/Button";
-import { LogIn, UserPlus } from "lucide-react";
-import { SignInButton, SignUpButton } from "@clerk/nextjs";
-import { useMediaQuery } from "@/components/hooks/useMediaQuery";
+} from '@/components/ui/DropdownMenu';
+import { Button } from '@/components/ui/Button';
+import { LogIn, UserPlus } from 'lucide-react';
+import { SignInButton, SignUpButton } from '@clerk/nextjs';
+import { useMediaQuery } from '@/components/hooks/useMediaQuery';
 
 const UserButton = () => {
   const { isSignedIn } = useUser();
-  const isMobile = useMediaQuery("(max-width: 1024px)");
+  const isMobile = useMediaQuery('(max-width: 1024px)');
 
   if (isSignedIn) {
     return (
@@ -22,14 +22,12 @@ const UserButton = () => {
         afterSignOutUrl="/"
         appearance={{
           elements: {
-            avatarBox: "w-8 h-8",
-            userButtonPopoverCard: "rounded-lg shadow-lg",
-            userButtonPopoverActionButton: "hover:bg-primary/10",
-            userButtonPopoverActionButtonText: "text-sm",
-            userButtonPopoverFooter: "hidden",
-            userButtonPopover: isMobile
-              ? "translate-y-[-40%]"
-              : "translate-y-[-20%]",
+            avatarBox: 'w-8 h-8',
+            userButtonPopoverCard: 'rounded-lg shadow-lg',
+            userButtonPopoverActionButton: 'hover:bg-primary/10',
+            userButtonPopoverActionButtonText: 'text-sm',
+            userButtonPopoverFooter: 'hidden',
+            userButtonPopover: isMobile ? 'translate-y-[-40%]' : 'translate-y-[-20%]',
           },
         }}
       />
@@ -39,17 +37,13 @@ const UserButton = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button
-          variant="ghost"
-          size="icon"
-          className="rounded-full w-8 h-8 hover:bg-primary/10"
-        >
+        <Button variant="ghost" size="icon" className="rounded-full w-8 h-8 hover:bg-primary/10">
           <UserPlus className="w-4 h-4" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent
         align="center"
-        className={`w-48 bg-secondary ${isMobile ? "translate-y-[-40%]" : "translate-y-[-20%]"}`}
+        className={`w-48 bg-secondary ${isMobile ? 'translate-y-[-40%]' : 'translate-y-[-20%]'}`}
         sideOffset={isMobile ? 8 : 4}
       >
         <DropdownMenuItem className="cursor-pointer">

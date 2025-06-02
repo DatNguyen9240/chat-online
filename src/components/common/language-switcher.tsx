@@ -1,31 +1,25 @@
 // src/components/language-switcher.tsx
-"use client";
+'use client';
 
-import { useTranslation } from "react-i18next";
-import { lang } from "@/i18n";
-import { Button } from "@/components/ui/Button";
-import { Globe } from "lucide-react";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@radix-ui/react-tooltip";
-import { Badge } from "@/components/ui/Badge";
+import { useTranslation } from 'react-i18next';
+import { lang } from '@/i18n';
+import { Button } from '@/components/ui/Button';
+import { Globe } from 'lucide-react';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@radix-ui/react-tooltip';
+import { Badge } from '@/components/ui/Badge';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/DropdownMenu";
+} from '@/components/ui/DropdownMenu';
 
 export default function LanguageSwitcher() {
   const { i18n } = useTranslation();
 
   const getCurrentLanguageName = () => {
-    const currentLang = lang.find(
-      (item) => Object.keys(item)[0] === i18n.language
-    );
-    return currentLang ? Object.values(currentLang)[0] : "";
+    const currentLang = lang.find(item => Object.keys(item)[0] === i18n.language);
+    return currentLang ? Object.values(currentLang)[0] : '';
   };
 
   return (
@@ -47,7 +41,7 @@ export default function LanguageSwitcher() {
         </TooltipContent>
       </Tooltip>
       <DropdownMenuContent align="end" side="top" className="w-[150px]">
-        {lang.map((item) => {
+        {lang.map(item => {
           const [key, value] = Object.entries(item)[0];
           return (
             <DropdownMenuItem

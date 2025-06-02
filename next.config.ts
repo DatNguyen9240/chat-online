@@ -3,8 +3,8 @@ const nextConfig = {
   reactStrictMode: true,
   redirects: async () => [
     {
-      source: "/",
-      destination: "/conversations",
+      source: '/',
+      destination: '/conversations',
       permanent: true,
     },
   ],

@@ -1,5 +1,5 @@
-import { Card } from "@/components/ui/Card";
-import React from "react";
+import { Card } from '@/components/ui/Card';
+import React from 'react';
 
 interface Props {
   children: React.ReactNode;

@@ -1,25 +1,24 @@
-import { Id } from "@/convex/_generated/dataModel";
-import React from "react";
-import { Card } from "@/components/ui/Card";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
-import { Button } from "@/components/ui/Button";
-import { Check, X } from "lucide-react";
-import { api } from "@/convex/_generated/api";
-import useMutationState from "@/components/hooks/useMutationState";
-import { toast } from "sonner";
+import { Id } from '@/convex/_generated/dataModel';
+import React from 'react';
+import { Card } from '@/components/ui/Card';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/Avatar';
+import { Button } from '@/components/ui/Button';
+import { Check, X } from 'lucide-react';
+import { api } from '@/convex/_generated/api';
+import useMutationState from '@/components/hooks/useMutationState';
+import { toast } from 'sonner';
 type Props = {
-  id: Id<"requests">;
+  id: Id<'requests'>;
   image: string;
   username: string;
   email: string;
 };
 
 const Request = ({ id, image, username, email }: Props) => {
-  const { pending: denyingPending, mutation: denyRequest } = useMutationState(
-    api.request.deny
+  const { pending: denyingPending, mutation: denyRequest } = useMutationState(api.request.deny);
+  const { pending: acceptingPending, mutation: acceptRequest } = useMutationState(
+    api.request.accept
   );
-  const { pending: acceptingPending, mutation: acceptRequest } =
-    useMutationState(api.request.accept);
   return (
     <Card className="w-full p-2 flex flex-row items-center justify-between gap-2">
       <div className="flex items-center gap-2 truncate">
@@ -40,9 +39,9 @@ const Request = ({ id, image, username, email }: Props) => {
           onClick={() =>
             acceptRequest({ requestId: id })
               .then(() => {
-                toast.success("Request accepted");
+                toast.success('Request accepted');
               })
-              .catch((error) => {
+              .catch(error => {
                 toast.error(error.error);
               })
           }
@@ -57,9 +56,9 @@ const Request = ({ id, image, username, email }: Props) => {
           onClick={() =>
             denyRequest({ requestId: id })
               .then(() => {
-                toast.success("Request denied");
+                toast.success('Request denied');
               })
-              .catch((error) => {
+              .catch(error => {
                 toast.error(error.error);
               })
           }

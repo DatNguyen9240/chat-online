@@ -1,5 +1,5 @@
-import React from "react";
-import SidebarWrapper from "@/components/common/sidebar/SidebarWrapper";
+import React from 'react';
+import SidebarWrapper from '@/components/common/sidebar/SidebarWrapper';
 
 interface Props {
   children: React.ReactNode;

@@ -1,47 +1,47 @@
-import { RouteConfig } from "@/types/Config/Route";
+import { RouteConfig } from '@/types/Config/Route';
 
 export const routeConfig: RouteConfig[] = [
   {
-    path: "/",
+    path: '/',
   },
   {
-    path: "/login",
+    path: '/login',
   },
   {
-    path: "/register",
+    path: '/register',
   },
   {
-    path: "/chat",
+    path: '/chat',
   },
   {
-    path: "/profile",
+    path: '/profile',
   },
   {
-    path: "/user",
+    path: '/user',
     children: [
       {
-        path: "/user/setting",
+        path: '/user/setting',
       },
       {
-        path: "/user/profile",
+        path: '/user/profile',
       },
       {
-        path: "/user/[id]",
+        path: '/user/[id]',
         isDynamic: true,
       },
     ],
   },
   {
-    path: "/conversations",
+    path: '/conversations',
     children: [
       {
-        path: "/conversations/[id]",
+        path: '/conversations/[id]',
         isDynamic: true,
       },
     ],
   },
   {
-    path: "/friends",
+    path: '/friends',
   },
 ];
 
@@ -49,10 +49,10 @@ export const routeConfig: RouteConfig[] = [
 export function isValidRoute(pathname: string, routes: RouteConfig[]): boolean {
   // Kiểm tra các route đặc biệt của Next.js
   if (
-    pathname.startsWith("/_next") ||
-    pathname.startsWith("/api") ||
-    pathname.startsWith("/static") ||
-    pathname.startsWith("/favicon.ico")
+    pathname.startsWith('/_next') ||
+    pathname.startsWith('/api') ||
+    pathname.startsWith('/static') ||
+    pathname.startsWith('/favicon.ico')
   ) {
     return true;
   }
@@ -66,7 +66,7 @@ export function isValidRoute(pathname: string, routes: RouteConfig[]): boolean {
 
     // Kiểm tra route động
     if (route.isDynamic) {
-      const pattern = route.path.replace(/\[.*?\]/, "[^/]+");
+      const pattern = route.path.replace(/\[.*?\]/, '[^/]+');
       const regex = new RegExp(`^${pattern}$`);
       if (regex.test(pathname)) {
         return true;
