@@ -9,7 +9,9 @@ import CreateGroupDialog from "./_components/CreateGroupDialog";
 import GroupConversationItem from "./_components/GroupConversationItem";
 import { useTranslation } from "react-i18next";
 
-type Props = React.PropsWithChildren<{}>;
+interface Props {
+  children: React.ReactNode;
+}
 
 const ConservationsLayout = ({ children }: Props) => {
   const conversations = useQuery(api.conversations.get);
