@@ -1,7 +1,9 @@
 import { Card } from "@/components/ui/Card";
 import React from "react";
 
-type Props = React.PropsWithChildren<{}>;
+interface Props {
+  children: React.ReactNode;
+}
 
 const ConservationContainer = ({ children }: Props) => {
   return (
