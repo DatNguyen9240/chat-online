@@ -1,16 +1,16 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
-import { Card } from "@/components/ui/Card";
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/Avatar';
+import { Card } from '@/components/ui/Card';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/DropdownMenu";
-import { CircleArrowLeftIcon, Settings } from "lucide-react";
-import Link from "next/link";
-import React from "react";
-import { Button } from "@/components/ui/Button";
-import { cn } from "@/lib/utils";
+} from '@/components/ui/DropdownMenu';
+import { CircleArrowLeftIcon, Settings } from 'lucide-react';
+import Link from 'next/link';
+import React from 'react';
+import { Button } from '@/components/ui/Button';
+import { cn } from '@/lib/utils';
 type Props = {
   imgUrl?: string;
   name?: string;
@@ -38,11 +38,7 @@ const Header = ({ imgUrl, name, options }: Props) => {
         {options ? (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button
-                size="icon"
-                variant="ghost"
-                className="hover:bg-primary/10"
-              >
+              <Button size="icon" variant="ghost" className="hover:bg-primary/10">
                 <Settings className="w-4 h-4" />
               </Button>
             </DropdownMenuTrigger>
@@ -51,10 +47,9 @@ const Header = ({ imgUrl, name, options }: Props) => {
                 <DropdownMenuItem
                   key={id}
                   onClick={option.onClick}
-                  className={cn("text-xs font-medium", {
-                    "text-destructive focus:bg-destructive/10":
-                      option.destructive,
-                    "focus:bg-primary/10": !option.destructive,
+                  className={cn('text-xs font-medium', {
+                    'text-destructive focus:bg-destructive/10': option.destructive,
+                    'focus:bg-primary/10': !option.destructive,
                   })}
                 >
                   {option.label}

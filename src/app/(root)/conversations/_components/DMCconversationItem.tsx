@@ -1,10 +1,10 @@
-import Link from "next/link";
-import { Card } from "@/components/ui/Card";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/Avatar";
-import { User } from "lucide-react";
-import { Id } from "@/convex/_generated/dataModel";
+import Link from 'next/link';
+import { Card } from '@/components/ui/Card';
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/Avatar';
+import { User } from 'lucide-react';
+import { Id } from '@/convex/_generated/dataModel';
 interface Props {
-  id: Id<"conversations">;
+  id: Id<'conversations'>;
   imageUrl: string;
   username: string;
   lastMessageSender?: string;
@@ -34,14 +34,12 @@ const DMCconversationItem = ({
                 <span className="text-sm text-muted-foreground flex truncate overflow-ellipsis">
                   <p className="font-semibold">
                     {lastMessageSender}
-                    {": "}&nbsp;
+                    {': '}&nbsp;
                   </p>
                   <p className="ml-1">{lastMessageContent}</p>
                 </span>
               ) : (
-                <p className="text-xs text-muted-foreground truncate">
-                  Start the conversation!
-                </p>
+                <p className="text-xs text-muted-foreground truncate">Start the conversation!</p>
               )}
             </div>
           </div>

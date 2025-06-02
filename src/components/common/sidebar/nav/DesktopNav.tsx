@@ -1,19 +1,15 @@
-"use client";
+'use client';
 
-import { useNavigation } from "@/components/hooks/useNavigation";
-import { Card } from "@/components/ui/Card";
-import UserButton from "@/components/auth/AuthButton";
-import { cn } from "@/lib/utils";
-import Link from "next/link";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@radix-ui/react-tooltip";
-import { Button } from "@/components/ui/Button";
-import { ThemeToggle } from "@/components/ui/theme/ThemeToggle";
-import { Badge } from "@/components/ui/Badge";
-import LanguageSwitcher from "@/components/common/language-switcher";
+import { useNavigation } from '@/components/hooks/useNavigation';
+import { Card } from '@/components/ui/Card';
+import UserButton from '@/components/auth/AuthButton';
+import { cn } from '@/lib/utils';
+import Link from 'next/link';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@radix-ui/react-tooltip';
+import { Button } from '@/components/ui/Button';
+import { ThemeToggle } from '@/components/ui/theme/ThemeToggle';
+import { Badge } from '@/components/ui/Badge';
+import LanguageSwitcher from '@/components/common/language-switcher';
 
 const DesktopNav = () => {
   const paths = useNavigation();
@@ -30,18 +26,17 @@ const DesktopNav = () => {
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <Button
-                        variant={path.active ? "default" : "ghost"}
+                        variant={path.active ? 'default' : 'ghost'}
                         size="icon"
                         className={cn(
-                          "hover:bg-primary/10",
-                          path.active &&
-                            "bg-primary text-white hover:bg-primary/90"
+                          'hover:bg-primary/10',
+                          path.active && 'bg-primary text-white hover:bg-primary/90'
                         )}
                       >
                         <Icon className="w-5 h-5" />
                       </Button>
                     </TooltipTrigger>
-                    {typeof path.count === "number" && path.count > 0 && (
+                    {typeof path.count === 'number' && path.count > 0 && (
                       <Badge
                         variant="destructive"
                         className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 z-50"

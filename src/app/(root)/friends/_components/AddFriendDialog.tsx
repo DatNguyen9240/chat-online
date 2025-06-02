@@ -1,10 +1,10 @@
-"use client";
-import React from "react";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { Button } from "@/components/ui/Button";
-import { Input } from "@/components/ui/Input";
+'use client';
+import React from 'react';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { Button } from '@/components/ui/Button';
+import { Input } from '@/components/ui/Input';
 import {
   Dialog,
   DialogContent,
@@ -13,13 +13,9 @@ import {
   DialogTitle,
   DialogTrigger,
   DialogFooter,
-} from "@/components/ui/Dialog";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@radix-ui/react-tooltip";
-import { UserPlus } from "lucide-react";
+} from '@/components/ui/Dialog';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@radix-ui/react-tooltip';
+import { UserPlus } from 'lucide-react';
 import {
   Form,
   FormControl,
@@ -27,30 +23,27 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/Form";
-import useMutationState from "@/components/hooks/useMutationState";
-import { api } from "@/convex/_generated/api";
-import { toast } from "sonner";
-import { ConvexError } from "convex/values";
+} from '@/components/ui/Form';
+import useMutationState from '@/components/hooks/useMutationState';
+import { api } from '@/convex/_generated/api';
+import { toast } from 'sonner';
 
 const AddFriendDialogSchema = z.object({
   email: z
     .string()
-    .min(1, { message: "Email is required" })
+    .min(1, { message: 'Email is required' })
     .max(255)
-    .email("Invalid email address"),
+    .email('Invalid email address'),
 });
 
 type FormData = z.infer<typeof AddFriendDialogSchema>;
 
 const AddFriendDialog = () => {
-  const { pending, mutation: createRequest } = useMutationState(
-    api.request.create
-  );
+  const { pending, mutation: createRequest } = useMutationState(api.request.create);
   const form = useForm<FormData>({
     resolver: zodResolver(AddFriendDialogSchema),
     defaultValues: {
-      email: "",
+      email: '',
     },
   });
 
@@ -60,7 +53,7 @@ const AddFriendDialog = () => {
       toast.error(result.error);
     } else {
       form.reset();
-      toast.success("Request sent");
+      toast.success('Request sent');
     }
   };
 
@@ -81,15 +74,10 @@ const AddFriendDialog = () => {
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Add Friend</DialogTitle>
-          <DialogDescription>
-            Add a friend by their email address.
-          </DialogDescription>
+          <DialogDescription>Add a friend by their email address.</DialogDescription>
         </DialogHeader>
         <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(handleSubmit)}
-            className="space-y-4"
-          >
+          <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4">
             <FormField
               control={form.control}
               name="email"
@@ -105,7 +93,7 @@ const AddFriendDialog = () => {
             />
             <DialogFooter>
               <Button type="submit" disabled={pending}>
-                {pending ? "Sending..." : "Send Request"}
+                {pending ? 'Sending...' : 'Send Request'}
               </Button>
             </DialogFooter>
           </form>
