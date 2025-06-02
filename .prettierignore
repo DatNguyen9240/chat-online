@@ -1,0 +1,7 @@
+convex/_generated/*
+.next
+node_modules
+public
+build
+dist
+coverage 
