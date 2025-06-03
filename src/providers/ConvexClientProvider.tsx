@@ -3,7 +3,7 @@
 import React from 'react';
 import { ConvexProviderWithClerk } from 'convex/react-clerk';
 import { useAuth } from '@clerk/nextjs';
-import { Authenticated, AuthLoading, ConvexReactClient } from 'convex/react';
+import { AuthLoading, ConvexReactClient } from 'convex/react';
 import Loading from '@/components/common/loading';
 
 type Props = {
